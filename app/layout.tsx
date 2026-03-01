@@ -67,7 +67,9 @@ export default function RootLayout({
   pathname === '/noc/noc-open-job' ||
   pathname === '/teleport-head/job-detail' ||
   pathname === '/login' ||
-  pathname === '/teleport-technician/job-detail'
+  pathname === '/teleport-technician/job-detail' ||
+  pathname ===  '/teleport-technician/Inventory-control' ||
+  pathname === '/teleport-head/Inventory-control'
   
 
   return (

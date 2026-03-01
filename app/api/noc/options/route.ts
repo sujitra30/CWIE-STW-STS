@@ -101,6 +101,18 @@ export async function GET() {
    ORDER BY v.license_plate`,
     );
 
+    const statusIcResult = await pool.query(
+      "SELECT status_ic_id, name FROM status_ic WHERE is_active = true ORDER BY status_ic_id",
+    );
+
+    const plantsResult = await pool.query(
+      "SELECT plant_id, plant_code, plant_name FROM plant ORDER BY plant_code",
+    );
+
+    const materialsResult = await pool.query(
+      "SELECT material_id, material_no, material_name, material_type, unit FROM material ORDER BY material_no",
+    );
+
     return NextResponse.json({
       projects: projectsResult.rows,
       slas: slasResult.rows,
@@ -123,6 +135,9 @@ export async function GET() {
       teleports: teleports.rows,
       persons: persons.rows,
       vehicles: vehicles.rows,
+      statusIc: statusIcResult.rows,
+      plants: plantsResult.rows,
+      materials: materialsResult.rows,
     });
   } catch (error) {
     console.error("Error fetching options:", error);
