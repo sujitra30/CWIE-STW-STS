@@ -80,7 +80,7 @@ export default function NocPage() {
             </button>
 
             <button
-              onClick={() => router.push("/teleport-head/Inventory-return")}
+              onClick={() => router.push("/teleport-technician/Inventory-control/return")}
               className="w-full py-3 bg-gray-100 rounded-[12px]
                  text-[20px] font-semibold
                  hover:bg-gray-200 transition"

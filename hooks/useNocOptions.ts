@@ -53,6 +53,7 @@ interface NocOptionsRaw {
     material_type: string;
     unit: string;
   }[];
+  conditions: { code: string; name: string }[];
 }
 
 export interface NocOptions {
@@ -80,6 +81,7 @@ export interface NocOptions {
   statusIcOptions: SelectOption[];
   plantOptions: SelectOption[];
   materialOptions: SelectOption[];
+  conditionOptions: SelectOption[];
   loading: boolean;
   error: string | null;
 }
@@ -289,6 +291,13 @@ export function useNocOptions(): NocOptions {
     })),
   );
 
+  const conditionOptions = withAll(
+    (data?.conditions ?? []).map((c) => ({
+      value: c.code,
+      label: c.name,
+    })),
+  );
+
   return {
     teleportOptions,
     projectOptions,
@@ -314,6 +323,7 @@ export function useNocOptions(): NocOptions {
     statusIcOptions,
     plantOptions,
     materialOptions,
+    conditionOptions,
     loading,
     error,
   };

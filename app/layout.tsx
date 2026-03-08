@@ -69,7 +69,9 @@ export default function RootLayout({
   pathname === '/login' ||
   pathname === '/teleport-technician/job-detail' ||
   pathname ===  '/teleport-technician/Inventory-control' ||
-  pathname === '/teleport-head/Inventory-control'
+  pathname === '/teleport-head/Inventory-control' ||
+  pathname === '/Inventory-control' ||
+  pathname === '/teleport-technician/Inventory-control/return'
   
 
   return (

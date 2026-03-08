@@ -113,6 +113,10 @@ export async function GET() {
       "SELECT material_id, material_no, material_name, material_type, unit FROM material ORDER BY material_no",
     );
 
+    const conditions = await pool.query(
+    "SELECT code, name FROM ic_item_condition ORDER BY code",
+  );
+
     return NextResponse.json({
       projects: projectsResult.rows,
       slas: slasResult.rows,
@@ -138,6 +142,7 @@ export async function GET() {
       statusIc: statusIcResult.rows,
       plants: plantsResult.rows,
       materials: materialsResult.rows,
+      conditions: conditions.rows,
     });
   } catch (error) {
     console.error("Error fetching options:", error);
