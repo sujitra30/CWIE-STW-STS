@@ -10,6 +10,7 @@ import {
   FileDown,
   Package,
   LogOut,
+  ShieldCheck,
 } from 'lucide-react'
 
 const menuItems = [
@@ -17,9 +18,10 @@ const menuItems = [
   { label: 'Noc', href: '/noc', icon: Network },
   { label: 'Teleport Head', href: '/teleport-head', icon: Users },
   { label: 'Teleport Technician', href: '/teleport-technician', icon: Wrench },
-  { label: 'Export Job', href: '/export-job', icon: FileDown },
-  { label: 'Inventory Control', href: '/Inventory-control', icon: Package },
+  // { label: 'Export Job', href: '/export-job', icon: FileDown },
+  // { label: 'Inventory Control', href: '/Inventory-control', icon: Package },
   //{ label: 'Account Management', href: '/account-management', icon: Package },
+  { label: 'PM', href: '/PM', icon: ShieldCheck },
 ]
 
 export default function Sidebar() {

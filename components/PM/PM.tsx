@@ -18,12 +18,12 @@ export default function NocPage() {
                    cursor-pointer hover:shadow-xl transition"
       >
         <Image
-          src="/images/icons8-gitlab-50.png"
+          src="/images/icons8-maintenance-50.png"
           alt="Noc"
           width={80}
           height={80}
         />
-        <h2 className="text-[22px] font-semibold mt-4">Noc</h2>
+        <h2 className="text-[22px] font-semibold mt-4">Pm Service</h2>
       </div>
 
       {/* Noc Open Job */}
@@ -33,20 +33,12 @@ export default function NocPage() {
                      shadow-lg p-6 flex flex-col gap-3"
         >
           <button
-            onClick={() => router.push('/noc/noc-open-job')}
+            onClick={() => router.push('/PM/GenerateRawData')}
             className="w-full py-3 bg-gray-100 rounded-[12px]
                        text-[20px] font-semibold
                        hover:bg-gray-200 transition"
           >
-            Noc Open Job
-          </button>
-          <button
-            onClick={() => router.push('/export-job/export-job')}
-            className="w-full py-3 bg-gray-100 rounded-[12px]
-                       text-[20px] font-semibold
-                       hover:bg-gray-200 transition"
-          >
-            Export Job
+            Generate Raw Data
           </button>
         </div>
       )}
