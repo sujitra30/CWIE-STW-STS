@@ -72,7 +72,8 @@ export default function RootLayout({
   pathname === '/teleport-head/Inventory-control' ||
   pathname === '/Inventory-control' ||
   pathname === '/teleport-technician/Inventory-control/return' ||
-  pathname === '/PM/GenerateRawData'
+  pathname === '/PM/GenerateRawData' ||
+  pathname === '/noc/Functional-Location'
   
 
   return (

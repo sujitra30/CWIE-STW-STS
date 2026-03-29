@@ -44,32 +44,80 @@ export default function NocOpenJobPage() {
 
   const fetchOptions = async () => {
     try {
-      const res = await fetch("/api/noc/options");
-      const data = await res.json();
-      setOptions(data);
+      const [
+        // optionsRes,
+        projectRes,
+        slaRes,
+        jobTypeRes,
+        priorityRes,
+        breakdownRes,
+        statusRes,
+        statusSlaRes,
+        causesSamartRes,
+        causesActivityRes,
+        causesCustomerRes,
+        causesOtherRes,
+      ] = await Promise.all([
+        //fetch("/api/noc/options"),
+        fetch("/api/noc/GetProject"),
+        fetch("/api/noc/GetSLAs"),
+        fetch("/api/noc/GetJobTypes"),
+        fetch("/api/noc/GetPriorities"),
+        fetch("/api/noc/GetBreakdownTypes"),
+        fetch("/api/noc/GetStatuses"),
+        fetch("/api/noc/GetStatusSlas"),
+        fetch("/api/noc/GetCausesSamart"),
+        fetch("/api/noc/GetCausesActivity"),
+        fetch("/api/noc/GetCausesCustomer"),
+        fetch("/api/noc/GetCausesOther"),
+      ]);
+
+      const [
+        //data,
+        projectData,
+        slaData,
+        jobTypeData,
+        priorityData,
+        breakdownData,
+        statusData,
+        statusSlaData,
+        causesSamartData,
+        causesActivityData,
+        causesCustomerData,
+        causesOtherData,
+      ] = await Promise.all([
+        //optionsRes.json(),
+        projectRes.json(),
+        slaRes.json(),
+        jobTypeRes.json(),
+        priorityRes.json(),
+        breakdownRes.json(),
+        statusRes.json(),
+        statusSlaRes.json(),
+        causesSamartRes.json(),
+        causesActivityRes.json(),
+        causesCustomerRes.json(),
+        causesOtherRes.json(),
+      ]);
+
+      setOptions({
+        //...data,
+        projects: projectData.projects,
+        slas: slaData.slas,
+        jobTypes: jobTypeData.jobTypes,
+        priorities: priorityData.priorities,
+        breakdownTypes: breakdownData.breakdownTypes,
+        statuses: statusData.statuses,
+        statusSlas: statusSlaData.statusSlas,
+        causesSamart: causesSamartData.causesSamart,
+        causesActivity: causesActivityData.causesActivity,
+        causesCustomer: causesCustomerData.causesCustomer,
+        causesOther: causesOtherData.causesOther,
+      });
     } catch (error) {
       console.error("Error fetching options:", error);
     }
   };
-
-  // const getCurrentDateTime = () => {
-  //   const now = new Date();
-  //   return now.toISOString().slice(0, 19);
-  // };
-
-  // const calculateCloseDate = (openDateStr: string) => {
-  //   if (!openDateStr) return "";
-  //   const openDate = new Date(openDateStr);
-  //   openDate.setHours(openDate.getHours() + 4);
-  //   return openDate.toISOString().slice(0, 19);
-  // };
-
-  // const currentDateTime = getCurrentDateTime();
-
-  //   const [form, setForm] = useState<any>({
-  //   openDate: currentDateTime,
-  //   closeDate: calculateCloseDate(currentDateTime),
-  // });
 
   // เปลี่ยนเป็น
   const toLocalDateTimeString = (date: Date) => {

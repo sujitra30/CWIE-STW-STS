@@ -172,21 +172,50 @@ export default function JobDetail() {
   }, []);
 
   // ดึง dropdown options
-  useEffect(() => {
-    const fetchOptions = async () => {
-      try {
-        const res = await fetch("/api/noc/options");
-        if (!res.ok) return;
-        const data = await res.json();
-        setTeleports(data.teleports || []);
-        setPersons(data.persons || []);
-        setVehicles(data.vehicles || []);
-      } catch (err) {
-        console.error("Error fetching options:", err);
-      }
-    };
-    fetchOptions();
-  }, []);
+  // useEffect(() => {
+  //   const fetchOptions = async () => {
+  //     try {
+  //       const res = await fetch("/api/noc/options");
+  //       fetch("/api/noc/GetVehicles");
+  //       fetch("/api/noc/GetTeleports");
+  //       fetch("/api/noc/GetPersons");
+  //       if (!res.ok) return;
+  //       const data = await res.json();
+  //       setTeleports(data.teleports || []);
+  //       setPersons(data.persons || []);
+  //       setVehicles(data.vehicles || []);
+  //     } catch (err) {
+  //       console.error("Error fetching options:", err);
+  //     }
+  //   };
+  //   fetchOptions();
+  // }, []);
+
+  // ดึง dropdown options
+useEffect(() => {
+  const fetchOptions = async () => {
+    try {
+      const [vehiclesRes, teleportsRes, personsRes] = await Promise.all([
+        fetch("/api/teleport-head/GetVehicles"),
+        fetch("/api/teleport-head/GetTeleports"),
+        fetch("/api/teleport-head/GetPersons"),
+      ]);
+
+      const [vehiclesData, teleportsData, personsData] = await Promise.all([
+        vehiclesRes.json(),
+        teleportsRes.json(),
+        personsRes.json(),
+      ]);
+
+      setVehicles(vehiclesData.vehicles || []);
+      setTeleports(teleportsData.teleports || []);
+      setPersons(personsData.persons || []);
+    } catch (err) {
+      console.error("Error fetching options:", err);
+    }
+  };
+  fetchOptions();
+}, []);
 
   const handleJobChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
